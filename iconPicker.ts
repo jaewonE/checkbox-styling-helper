@@ -2,6 +2,7 @@ import { Editor, MarkdownView } from "obsidian";
 
 export function createIconPicker(
 	editor: Editor,
+	isThings: boolean,
 	lineNumber: number,
 	lineLength: number,
 	leadingSpaces: string
@@ -9,7 +10,44 @@ export function createIconPicker(
 	const pickerEl = document.createElement("div");
 	pickerEl.className = "icon-picker";
 
-	const icons = [
+	const icons_ect = [
+		{ name: "Dropped", icon: "➖", value: "- [-] " },
+		{ name: "Forward", icon: "➤", value: "- [>] " },
+		{ name: "Date", icon: "📅", value: "- [D] " },
+		{ name: "Question", icon: "❓", value: "- [?] " },
+		{ name: "Half Done", icon: "◩", value: "- [/] " },
+		{ name: "Add", icon: "➕", value: "- [+] " },
+		{ name: "Research", icon: "🔎", value: "- [R] " },
+		{ name: "Important", icon: "❗️", value: "- [!] " },
+		{ name: "Idea", icon: "💡", value: "- [i] " },
+		{ name: "Pro", icon: "👍", value: "- [P] " },
+		{ name: "Con", icon: "👎", value: "- [C] " },
+		{ name: "Quote", icon: '"', value: "- [Q] " },
+		{ name: "Note", icon: "📝", value: "- [N] " },
+		{ name: "Bookmark", icon: "🔖", value: "- [b] " },
+		{ name: "Information", icon: "ℹ️", value: "- [I] " },
+		{ name: "Paraphrase", icon: "⏩", value: "- [p] " },
+		{ name: "Location", icon: "📍", value: "- [L] " },
+		{ name: "Example", icon: "EX", value: "- [E] " },
+		{ name: "Answer", icon: "✅", value: "- [A] " },
+		{ name: "Reward", icon: "🏆", value: "- [r] " },
+		{ name: "Choice", icon: "🪧", value: "- [c] " },
+		{ name: "Doing", icon: "🔵", value: "- [d] " },
+		{ name: "Time", icon: "⏱️", value: "- [T] " },
+		{ name: "Person", icon: "👤", value: "- [@] " },
+		{ name: "Talk", icon: "💬", value: "- [t] " },
+		{ name: "Outline", icon: "📚", value: "- [O] " },
+		{ name: "Conflict", icon: "⚔️", value: "- [~] " },
+		{ name: "World", icon: "🪐", value: "- [W] " },
+		{ name: "Clue / Find", icon: "🕵️‍♂️", value: "- [f] " },
+		{ name: "Foreshadow", icon: "🐦‍⬛", value: "- [F] " },
+		{ name: "Favorite", icon: "❤️", value: "- [H] " },
+		{ name: "Symbolism", icon: "☯︎", value: "- [&] " },
+		{ name: "Secret", icon: "🔒", value: "- [s] " },
+		// Add more icons here
+	];
+
+	const icons_Things = [
 		{ name: "Next step", icon: "↳", value: "- [n] " },
 		{ name: "Next", icon: "→", value: "- [a] " },
 		{ name: "Therefore", icon: "∴", value: "- [t] " },
@@ -34,6 +72,8 @@ export function createIconPicker(
 		{ name: "Win", icon: "🎂", value: "- [w] " },
 		// Add more icons here
 	];
+
+	const icons = isThings ? icons_Things : icons_ect;
 
 	let selectedIndex = 0;
 	const numColumns = 4; // Number of columns for the grid

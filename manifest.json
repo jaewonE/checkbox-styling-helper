@@ -1,11 +1,11 @@
 {
 	"id": "checkbox-styling-helper",
 	"name": "Checkbox styling helper",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+	"description": "Obsidian plugin that helps you styling checkboxes in preview mode",
+	"author": "JaewonE",
+	"authorUrl": "https://github.com/jaewonE",
+	"fundingUrl": "https://github.com/jaewonE",
+	"isDesktopOnly": true
 }
