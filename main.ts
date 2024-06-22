@@ -20,7 +20,7 @@ export default class IconCheckboxPlugin extends Plugin {
 		if (line === undefined) return;
 
 		const lineText = editor.getLine(line);
-		const trimedLineText = lineText.trim();
+		const trimedLineText = lineText.trimStart();
 		if (
 			trimedLineText === "-:" ||
 			trimedLineText === "- :" ||
