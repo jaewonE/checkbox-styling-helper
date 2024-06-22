@@ -23,7 +23,7 @@ export function createIconPicker(
 		{ name: "Fire", icon: "🔥", value: "- [f] " },
 		{ name: "Up", icon: "📈", value: "- [u] " },
 		{ name: "Down", icon: "📉", value: "- [d] " },
-		{ name: "Forwarded", icon: "⏭️⏭", value: "- [>] " },
+		{ name: "Forwarded", icon: "⏭", value: "- [>] " },
 		{ name: "Scheduling", icon: "📅", value: "- [<] " },
 		{ name: "Information", icon: "ℹ️", value: "- [i] " },
 		{ name: "Location", icon: "📍", value: "- [l] " },
@@ -36,18 +36,27 @@ export function createIconPicker(
 	];
 
 	let selectedIndex = 0;
+	const numColumns = 4; // Number of columns for the grid
+	const itemMinWidth = 116;
 
 	icons.forEach(({ name, icon, value }, index) => {
 		const iconEl = document.createElement("div");
 		iconEl.className = "icon-option";
-		iconEl.innerText = `${icon} ${name}`;
+		// iconEl.innerText = `${icon}⠀⠀${name}`;
+		iconEl.innerHTML = `<span class="icon">${icon}</span><span>${name}</span>`;
 		iconEl.tabIndex = 0; // Make the div focusable
+		iconEl.style.minWidth = `${itemMinWidth}px`; // item width
+		iconEl.style.padding = "4px"; // Add padding for better appearance
+		iconEl.style.paddingRight = "6px";
+		iconEl.style.paddingLeft = "6px";
+		iconEl.style.cursor = "pointer";
+		iconEl.style.borderRadius = "5px";
 
 		iconEl.onclick = () => {
 			selectIcon(value);
 		};
 
-		if (index === selectedIndex) {
+		if (index === 0) {
 			iconEl.classList.add("selected"); // Highlight the first option
 		}
 
@@ -78,9 +87,18 @@ export function createIconPicker(
 
 		if (event.key === "ArrowDown") {
 			options[selectedIndex].classList.remove("selected");
-			selectedIndex = (selectedIndex + 1) % icons.length;
+			selectedIndex = (selectedIndex + numColumns) % icons.length;
 			options[selectedIndex].classList.add("selected");
 		} else if (event.key === "ArrowUp") {
+			options[selectedIndex].classList.remove("selected");
+			selectedIndex =
+				(selectedIndex - numColumns + icons.length) % icons.length;
+			options[selectedIndex].classList.add("selected");
+		} else if (event.key === "ArrowRight") {
+			options[selectedIndex].classList.remove("selected");
+			selectedIndex = (selectedIndex + 1) % icons.length;
+			options[selectedIndex].classList.add("selected");
+		} else if (event.key === "ArrowLeft") {
 			options[selectedIndex].classList.remove("selected");
 			selectedIndex = (selectedIndex - 1 + icons.length) % icons.length;
 			options[selectedIndex].classList.add("selected");
@@ -113,6 +131,12 @@ export function createIconPicker(
 	pickerEl.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
 	pickerEl.style.padding = "16px";
 	pickerEl.style.zIndex = "1000"; // Ensure it appears above other content
+	pickerEl.style.width = `${(itemMinWidth + 6) * numColumns + 16}px`; // Increase popup width
+
+	// Apply grid layout
+	pickerEl.style.display = "grid";
+	pickerEl.style.gridTemplateColumns = `repeat(${numColumns}, 1fr)`;
+	pickerEl.style.gap = "4px"; // Gap between grid items
 
 	document.body.appendChild(pickerEl);
 
