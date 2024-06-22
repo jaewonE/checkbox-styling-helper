@@ -10,6 +10,11 @@ export default class IconCheckboxPlugin extends Plugin {
 		);
 	}
 
+	LeadingSpaces(str: string): string {
+		const match = str.match(/^\s+/);
+		return match ? match[0] : "";
+	}
+
 	handleEditorChange = () => {
 		const editor =
 			this.app.workspace.getActiveViewOfType(MarkdownView)?.editor;
@@ -26,7 +31,13 @@ export default class IconCheckboxPlugin extends Plugin {
 			trimedLineText === "- :" ||
 			trimedLineText === "- [ ] :"
 		) {
-			createIconPicker(editor, line, lineText.length);
+			console.log("Create Icon Picker");
+			createIconPicker(
+				editor,
+				line,
+				lineText.length,
+				this.LeadingSpaces(lineText)
+			);
 		}
 	};
 
