@@ -77,21 +77,22 @@ export function createIconPicker(
 
 	let selectedIndex = 0;
 	const numColumns = 4; // Number of columns for the grid
-	const itemMinWidth = 116;
 
 	icons.forEach(({ name, icon, value }, index) => {
 		const iconEl = document.createElement("div");
 		iconEl.className = "icon-option";
-		// iconEl.innerText = `${icon}⠀⠀${name}`;
-		iconEl.innerHTML = `<span class="icon">${icon}</span><span>${name}</span>`;
-		iconEl.tabIndex = 0; // Make the div focusable
-		iconEl.style.minWidth = `${itemMinWidth}px`; // item width
-		iconEl.style.padding = "4px"; // Add padding for better appearance
-		iconEl.style.paddingRight = "6px";
-		iconEl.style.paddingLeft = "6px";
-		iconEl.style.cursor = "pointer";
-		iconEl.style.borderRadius = "5px";
 
+		const iconSpan = document.createElement("span");
+		iconSpan.className = "icon";
+		iconSpan.textContent = icon;
+
+		const nameSpan = document.createElement("span");
+		nameSpan.textContent = name;
+
+		iconEl.appendChild(iconSpan);
+		iconEl.appendChild(nameSpan);
+
+		iconEl.tabIndex = 0; // Make the div focusable
 		iconEl.onclick = () => {
 			selectIcon(value);
 		};
@@ -112,12 +113,10 @@ export function createIconPicker(
 		closePicker();
 
 		// Move the cursor to the end of the inserted text
-		try {
-			editor.setCursor(lineNumber, value.length + 10);
+		setTimeout(() => {
+			editor.setCursor(lineNumber, value.length + leadingSpaces.length);
 			editor.focus();
-		} catch (e) {
-			return;
-		}
+		}, 0);
 	};
 
 	const handleKeyDown = (event: KeyboardEvent) => {
@@ -152,7 +151,7 @@ export function createIconPicker(
 			return;
 		}
 	};
-	// document.addEventListener("keydown", handleKeyDown);
+
 	this.app.workspace
 		.getActiveViewOfType(MarkdownView)
 		?.registerDomEvent(document, "keydown", handleKeyDown);
@@ -160,23 +159,10 @@ export function createIconPicker(
 	// @ts-ignore
 	const cursorCoords = editor.cm.coordsAtPos(
 		editor.posToOffset(editor.getCursor())
-	); // {left: 87.64, right: 87.64, top: 593.31, bottom: 611.57}
+	);
 
-	pickerEl.style.position = "absolute";
 	pickerEl.style.left = `${cursorCoords.left}px`;
 	pickerEl.style.top = `${cursorCoords.top + 20}px`; // Adjust the offset as needed
-	pickerEl.style.backgroundColor = "white";
-	pickerEl.style.border = "1px solid #ccc";
-	pickerEl.style.borderRadius = "5px";
-	pickerEl.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
-	pickerEl.style.padding = "16px";
-	pickerEl.style.zIndex = "1000"; // Ensure it appears above other content
-	pickerEl.style.width = `${(itemMinWidth + 6) * numColumns + 16}px`; // Increase popup width
-
-	// Apply grid layout
-	pickerEl.style.display = "grid";
-	pickerEl.style.gridTemplateColumns = `repeat(${numColumns}, 1fr)`;
-	pickerEl.style.gap = "4px"; // Gap between grid items
 
 	document.body.appendChild(pickerEl);
 
