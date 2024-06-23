@@ -12,7 +12,7 @@
 	gap: 4px;
 }
 
-/* 다크 모드를 감지하고 스타일을 변경 */
+/* For dark mode */
 @media (prefers-color-scheme: dark) {
 	.icon-picker {
 		background-color: #222;
@@ -34,14 +34,14 @@
 }
 
 .icon-option .icon {
-	margin-right: 10px; /* 간격을 위한 마진 추가 */
+	margin-right: 10px;
 }
 
 .selected {
 	background-color: #f0f0f0;
 }
 
-/* 다크 모드에서의 selected 스타일 */
+/* For dark mode */
 @media (prefers-color-scheme: dark) {
 	.selected {
 		background-color: #555;
