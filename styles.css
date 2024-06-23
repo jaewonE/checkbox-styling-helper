@@ -17,7 +17,7 @@
 	.icon-picker {
 		background-color: #222;
 		border-color: #444;
-		color: #ddd; /* 기본 글자 색상 변경 */
+		color: #ddd; /* Default text color */
 		box-shadow: 0 2px 10px rgba(255, 255, 255, 0.01);
 	}
 
