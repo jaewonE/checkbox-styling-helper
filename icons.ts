@@ -36,10 +36,10 @@ export const icons_ect = [
 ];
 
 export const icons_Things = [
-	{ name: "Next step", icon: "↳", value: "- [n] " },
-	{ name: "Next", icon: "→", value: "- [a] " },
-	{ name: "Therefore", icon: "∴", value: "- [t] " },
-	{ name: "Clip", icon: "📎", value: "- [r] " },
+	// { name: "Next step", icon: "↳", value: "- [n] " },
+	// { name: "Next", icon: "→", value: "- [a] " },
+	// { name: "Therefore", icon: "∴", value: "- [t] " },
+	// { name: "Clip", icon: "📎", value: "- [r] " },
 	{ name: "Good", icon: "👍", value: "- [p] " },
 	{ name: "Bad", icon: "👎", value: "- [c] " },
 	{ name: "Question", icon: "❓", value: "- [?] " },
