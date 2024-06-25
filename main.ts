@@ -57,7 +57,6 @@ export default class IconCheckboxPlugin extends Plugin {
 			trimedLineText === "- :" ||
 			trimedLineText === "- [ ] :"
 		) {
-			console.log("Create Icon Picker");
 			createIconPicker(
 				editor,
 				this.settings.isThings,
@@ -85,8 +84,6 @@ class IconCheckboxSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 
 		containerEl.empty();
-
-		containerEl.createEl("h2", { text: "Icon Checkbox Plugin Settings" });
 
 		new Setting(containerEl)
 			.setName("Enable Things Theme")
