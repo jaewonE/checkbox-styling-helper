@@ -24,9 +24,13 @@ You can create a checkbox with the desired icon by clicking with the mouse or se
 
 ![Demo video](assets/demo.gif)
 
-### Available icons
+### Available icons(Things theme)
 
-![Available icons](assets/available_icons.png)
+![Available icons](assets/available_icons_things.png)
+
+### Available icons(ITS theme)
+
+![Available icons](assets/available_icons_its.png)
 
 ## We Need Your Help
 
@@ -38,4 +42,3 @@ This plugin originated from the idea of explicitly writing text by changing the 
 4. **Cannot select icons using Enter**: Due to issue three, pressing Enter also inserts an Enter (`\n`) on the page, leading to disorganized text.
 
 I seek advice and solutions that can help resolve these issues to create a better plugin that many people will enjoy using. Thank you!
-
