@@ -28,7 +28,7 @@ You can create a checkbox with the desired icon by clicking with the mouse or se
 
 ![Available icons](assets/available_icons_things.png)
 
-### Available icons(ITS theme)
+### Available icons(Else theme)(ITS style)
 
 ![Available icons](assets/available_icons_its.png)
 
