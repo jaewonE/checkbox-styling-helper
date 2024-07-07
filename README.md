@@ -27,3 +27,15 @@ You can create a checkbox with the desired icon by clicking with the mouse or se
 ### Available icons
 
 ![Available icons](assets/available_icons.png)
+
+## We Need Your Help
+
+This plugin originated from the idea of explicitly writing text by changing the header shape of Markdown's unordered lists into icons. Despite investing a lot of time in development and learning, the plugin was released with some limitations due to my limited skills. The limitations I've identified are as follows:
+
+1. **Icons do not revert on click**: As the styling is based on checkboxes, clicking an icon results in it being "unchecked," and the designated style disappears. The icons in unordered lists should not be clickable to prevent this.
+2. **Difficulty in adding icons**: The process of adding desired icons is complicated since it uses checkbox styling. It requires basic knowledge of JavaScript and CSS.
+3. **Keyboard not confined to the popup window**: For convenience, icons can be selected using the keyboard. However, the arrow keys move not only within the popped-up icon window but also on the page itself. Like the Tasks plugin, the keyboard should operate only within the popup.
+4. **Cannot select icons using Enter**: Due to issue three, pressing Enter also inserts an Enter (`\n`) on the page, leading to disorganized text.
+
+I seek advice and solutions that can help resolve these issues to create a better plugin that many people will enjoy using. Thank you!
+
