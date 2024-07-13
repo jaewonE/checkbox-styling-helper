@@ -4,9 +4,9 @@ The is a Obsidian plugin that helps you styling checkboxes in preview mode.
 
 If the theme you are using...
 
-#### Things theme
+#### Things and Minimal theme
 
-Be sure to check to use the [Things theme](https://github.com/colineckert/obsidian-things) in the settings.
+Be sure to check to use the [Things theme](https://github.com/colineckert/obsidian-things) or [Minimal theme](https://github.com/kepano/obsidian-minimal) in the settings.
 
 #### Else (including default theme)
 
@@ -26,11 +26,15 @@ You can create a checkbox with the desired icon by clicking with the mouse or se
 
 ### Available icons(Things theme)
 
-![Available icons](assets/available_icons_things.png)
+![Available icons_things](assets/available_icons_things.png)
+
+### Available icons(Minimal theme)
+
+![Available icons_minimal](assets/available_icons_minimal.png)
 
 ### Available icons(Else theme)(ITS style)
 
-![Available icons](assets/available_icons_its.png)
+![Available icons_its](assets/available_icons_its.png)
 
 ## We Need Your Help
 
