@@ -4,7 +4,7 @@ The is a Obsidian plugin that helps you styling checkboxes in preview mode.
 
 If the theme you are using...
 
-#### Things and Minimal theme
+#### Things or Minimal theme
 
 Be sure to check to use the [Things theme](https://github.com/colineckert/obsidian-things) or [Minimal theme](https://github.com/kepano/obsidian-minimal) in the settings.
 
