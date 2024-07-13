@@ -33,6 +33,21 @@
 	min-width: 116px;
 }
 
+.setting-icon-option {
+	padding: 4px 6px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	min-width: 116px;
+	max-width: 120px;
+	text-align: center;
+	cursor: grab;
+	transition: background-color 0.1s ease-in, background-color 0.5s ease-out;
+}
+
+.setting-icon-option .icon {
+	margin-right: 6px;
+}
+
 .icon-option .icon {
 	margin-right: 10px;
 }
@@ -46,4 +61,16 @@
 	.selected {
 		background-color: #555;
 	}
+}
+
+.setting-icon-grid {
+	display: grid;
+	align-items: self-end;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 6px;
+	width: 90%;
+}
+
+.icon-option.hovered {
+	background-color: #f0f0f0;
 }

@@ -1,18 +1,16 @@
-import { icons_setting, Icon_Item_Setting, Icon_Setting } from "icons";
+import { icons_setting, Icon_Item_Setting, Icon_Setting } from "default_icons";
 import { Editor, MarkdownView } from "obsidian";
 
 export function createIconPicker(
 	editor: Editor,
 	theme: string,
+	icons: Icon_Item_Setting[],
 	lineNumber: number,
 	lineLength: number,
 	leadingSpaces: string
 ) {
 	const pickerEl = document.createElement("div");
 	pickerEl.className = "icon-picker";
-
-	// icons = [{ name: string, icon: string, value: string }]
-	const icons = icons_setting[theme];
 
 	let selectedIndex = 0;
 	const numColumns = 4; // Number of columns for the grid

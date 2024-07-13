@@ -91,13 +91,13 @@ export interface Icon_Item_Setting {
 
 export interface Icon_Setting {
 	[key: string]: Icon_Item_Setting[];
-	ect: Icon_Item_Setting[];
+	Else: Icon_Item_Setting[];
 	Things: Icon_Item_Setting[];
 	Minimal: Icon_Item_Setting[];
 }
 
 export const icons_setting: Icon_Setting = {
-	ect: icons_ect,
+	Else: icons_ect,
 	Things: icons_Things,
 	Minimal: icons_Minimal,
 } as const;
