@@ -2,11 +2,11 @@ import { Plugin, MarkdownView, PluginSettingTab, Setting } from "obsidian";
 import { createIconPicker } from "iconPicker";
 
 interface IconCheckboxPluginSettings {
-	isThings: boolean;
+	theme: string;
 }
 
 const DEFAULT_SETTINGS: IconCheckboxPluginSettings = {
-	isThings: false,
+	theme: "Else",
 };
 
 export default class IconCheckboxPlugin extends Plugin {
@@ -59,7 +59,7 @@ export default class IconCheckboxPlugin extends Plugin {
 		) {
 			createIconPicker(
 				editor,
-				this.settings.isThings,
+				this.settings.theme,
 				line,
 				lineText.length,
 				this.LeadingSpaces(lineText)
@@ -86,13 +86,16 @@ class IconCheckboxSettingTab extends PluginSettingTab {
 		containerEl.empty();
 
 		new Setting(containerEl)
-			.setName("Enable Things Theme")
-			.setDesc("Enable this if you are using the Things theme")
-			.addToggle((toggle) =>
-				toggle
-					.setValue(this.plugin.settings.isThings)
+			.setName("Select Theme")
+			.setDesc("What theme are you currently using?")
+			.addDropdown((dropdown) =>
+				dropdown
+					.addOption("Else", "Else")
+					.addOption("Minimal", "Minimal")
+					.addOption("Things", "Things")
+					.setValue(this.plugin.settings.theme)
 					.onChange(async (value) => {
-						this.plugin.settings.isThings = value;
+						this.plugin.settings.theme = value;
 						await this.plugin.saveSettings();
 					})
 			);

@@ -1,4 +1,4 @@
-export const icons_ect = [
+const icons_ect = [
 	{ name: "Dropped", icon: "➖", value: "- [-] " },
 	{ name: "Forward", icon: "➤", value: "- [>] " },
 	{ name: "Date", icon: "📅", value: "- [D] " },
@@ -35,7 +35,7 @@ export const icons_ect = [
 	// Add more icons here
 ];
 
-export const icons_Things = [
+const icons_Things = [
 	// { name: "Next step", icon: "↳", value: "- [n] " },
 	// { name: "Next", icon: "→", value: "- [a] " },
 	// { name: "Therefore", icon: "∴", value: "- [t] " },
@@ -60,3 +60,44 @@ export const icons_Things = [
 	{ name: "Win", icon: "🎂", value: "- [w] " },
 	// Add more icons here
 ];
+
+const icons_Minimal = [
+	{ name: "canceled", icon: "➖", value: "- [-] " },
+	{ name: "forwarded", icon: "➤", value: "- [>] " },
+	{ name: "scheduling", icon: "📅", value: "- [<] " },
+	{ name: "question", icon: "❓", value: "- [?] " },
+	{ name: "important", icon: "❗️", value: "- [!] " },
+	{ name: "star", icon: "⭐️", value: "- [*] " },
+	{ name: "quote", icon: '"', value: '- ["] ' },
+	{ name: "location", icon: "📍", value: "- [l] " },
+	{ name: "bookmark", icon: "🔖", value: "- [b] " },
+	{ name: "information", icon: "ℹ️", value: "- [i] " },
+	{ name: "savings", icon: "💲", value: "- [S] " },
+	{ name: "idea", icon: "💡", value: "- [I] " },
+	{ name: "pros", icon: "👍", value: "- [p] " },
+	{ name: "cons", icon: "👎", value: "- [c] " },
+	{ name: "fire", icon: "🔥", value: "- [f] " },
+	{ name: "key", icon: "🔑", value: "- [k] " },
+	{ name: "win", icon: "🎂", value: "- [w] " },
+	{ name: "up", icon: "📈", value: "- [u] " },
+	{ name: "down", icon: "📉", value: "- [d] " },
+];
+
+export interface Icon_Item_Setting {
+	name: string;
+	icon: string;
+	value: string;
+}
+
+export interface Icon_Setting {
+	[key: string]: Icon_Item_Setting[];
+	ect: Icon_Item_Setting[];
+	Things: Icon_Item_Setting[];
+	Minimal: Icon_Item_Setting[];
+}
+
+export const icons_setting: Icon_Setting = {
+	ect: icons_ect,
+	Things: icons_Things,
+	Minimal: icons_Minimal,
+} as const;

@@ -1,9 +1,9 @@
+import { icons_setting, Icon_Item_Setting, Icon_Setting } from "icons";
 import { Editor, MarkdownView } from "obsidian";
-import { icons_Things, icons_ect } from "icons";
 
 export function createIconPicker(
 	editor: Editor,
-	isThings: boolean,
+	theme: string,
 	lineNumber: number,
 	lineLength: number,
 	leadingSpaces: string
@@ -12,7 +12,7 @@ export function createIconPicker(
 	pickerEl.className = "icon-picker";
 
 	// icons = [{ name: string, icon: string, value: string }]
-	const icons = isThings ? icons_Things : icons_ect;
+	const icons = icons_setting[theme];
 
 	let selectedIndex = 0;
 	const numColumns = 4; // Number of columns for the grid
