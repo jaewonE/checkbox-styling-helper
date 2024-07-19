@@ -1,4 +1,5 @@
 const icons_common = [
+	{ name: "Numbers", icon: "1", value: "1. " },
 	{ name: "Default", icon: "•", value: "- " },
 	{ name: "Unchecked", icon: "☐", value: "- [ ] " },
 	{ name: "Incomplete", icon: "◩", value: "- [/] " },

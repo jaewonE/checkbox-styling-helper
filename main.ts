@@ -34,6 +34,12 @@ export default class IconCheckboxPlugin extends Plugin {
 			callback: async () => {
 				this.openIconPicker(true);
 			},
+			hotkeys: [
+				{
+					modifiers: ["Mod"],
+					key: ";",
+				},
+			],
 		});
 	}
 
@@ -49,13 +55,20 @@ export default class IconCheckboxPlugin extends Plugin {
 		await this.saveData(this.settings);
 	}
 
+	// checkIsRightTrigger(text: string): boolean {
+	// 	const customTrigger = this.settings.customTrigger ?? ":";
+	// 	return (
+	// 		text === `-${customTrigger}` ||
+	// 		text === `- ${customTrigger}` ||
+	// 		text === `- [ ] ${customTrigger}`
+	// 	);
+	// }
 	checkIsRightTrigger(text: string): boolean {
 		const customTrigger = this.settings.customTrigger ?? ":";
-		return (
-			text === `-${customTrigger}` ||
-			text === `- ${customTrigger}` ||
-			text === `- [ ] ${customTrigger}`
+		const regex = new RegExp(
+			`^(\\d+\\. |\\d+\\. |)- ?(\\[ \\] )?${customTrigger}$`
 		);
+		return regex.test(text);
 	}
 
 	openIconPicker(forceOpen = false) {

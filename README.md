@@ -16,7 +16,11 @@ The styles provided by the [ITS theme](https://publish.obsidian.md/slrvb-docs/IT
 
 ### Usage
 
-Just add `:` to the right of Unordered Lists or checkboxes!
+Press (`Command + ;` on Mac) (or `Ctrl + ;` on Windows) anywhere to open the icon picker! (The hotkey can be customized in the settings).
+
+OR
+
+Just add `:` to the right of unordered lists or checkboxes! (This can be changed in the settings.)
 
 You can create a checkbox with the desired icon by clicking with the mouse or selecting the desired icon with the arrow keys and then pressing Spacebar.
 
