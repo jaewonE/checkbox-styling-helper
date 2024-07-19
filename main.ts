@@ -5,11 +5,13 @@ import { Icon_Item_Setting, icons_setting } from "default_icons";
 interface IconCheckboxPluginSettings {
 	theme: string;
 	icons: Icon_Item_Setting[];
+	customTrigger: string;
 }
 
 const DEFAULT_SETTINGS: IconCheckboxPluginSettings = {
 	theme: "Else",
 	icons: icons_setting["Else"],
+	customTrigger: ":", // Default trigger
 };
 
 export default class IconCheckboxPlugin extends Plugin {
@@ -25,6 +27,14 @@ export default class IconCheckboxPlugin extends Plugin {
 		this.registerEvent(
 			this.app.workspace.on("editor-change", this.handleEditorChange)
 		);
+
+		this.addCommand({
+			id: "open-icon-picker",
+			name: "Open icon picker",
+			callback: async () => {
+				this.openIconPicker(true);
+			},
+		});
 	}
 
 	async loadSettings() {
@@ -39,12 +49,16 @@ export default class IconCheckboxPlugin extends Plugin {
 		await this.saveData(this.settings);
 	}
 
-	LeadingSpaces(str: string): string {
-		const match = str.match(/^\s+/);
-		return match ? match[0] : "";
+	checkIsRightTrigger(text: string): boolean {
+		const customTrigger = this.settings.customTrigger ?? ":";
+		return (
+			text === `-${customTrigger}` ||
+			text === `- ${customTrigger}` ||
+			text === `- [ ] ${customTrigger}`
+		);
 	}
 
-	handleEditorChange = () => {
+	openIconPicker(forceOpen = false) {
 		const editor =
 			this.app.workspace.getActiveViewOfType(MarkdownView)?.editor;
 		if (!editor) return;
@@ -55,20 +69,20 @@ export default class IconCheckboxPlugin extends Plugin {
 
 		const lineText = editor.getLine(line);
 		const trimedLineText = lineText.trimStart();
-		if (
-			trimedLineText === "-:" ||
-			trimedLineText === "- :" ||
-			trimedLineText === "- [ ] :"
-		) {
+		if (forceOpen || this.checkIsRightTrigger(trimedLineText)) {
 			createIconPicker(
 				editor,
 				this.settings.theme,
 				this.settings.icons,
+				this.settings.customTrigger,
 				line,
-				lineText.length,
-				this.LeadingSpaces(lineText)
+				lineText
 			);
 		}
+	}
+
+	handleEditorChange = () => {
+		this.openIconPicker();
 	};
 
 	onunload() {
@@ -88,6 +102,19 @@ class IconCheckboxSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 
 		containerEl.empty();
+
+		new Setting(containerEl)
+			.setName("Custom Modal Trigger")
+			.setDesc("Set custom word to trigger the icon picker")
+			.addText((text) =>
+				text
+					.setPlaceholder("Enter a custom trigger")
+					.setValue(this.plugin.settings.customTrigger)
+					.onChange(async (value) => {
+						this.plugin.settings.customTrigger = value;
+						await this.plugin.saveSettings();
+					})
+			);
 
 		new Setting(containerEl)
 			.setName("Select Theme")
@@ -117,6 +144,7 @@ class IconCheckboxSettingTab extends PluginSettingTab {
 
 		// Create icon grid container
 		const iconGrid = containerEl.createDiv({ cls: "setting-icon-grid" });
+		let draggedItem: HTMLElement | null = null;
 
 		const renderIcons = () => {
 			iconGrid.empty();
@@ -146,8 +174,6 @@ class IconCheckboxSettingTab extends PluginSettingTab {
 				iconGrid.appendChild(iconEl);
 			});
 		};
-
-		let draggedItem: HTMLElement | null = null;
 
 		const handleDragStart = (e: DragEvent) => {
 			draggedItem = e.target as HTMLElement;

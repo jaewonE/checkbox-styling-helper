@@ -5,9 +5,9 @@ export function createIconPicker(
 	editor: Editor,
 	theme: string,
 	icons: Icon_Item_Setting[],
+	customTrigger: string,
 	lineNumber: number,
-	lineLength: number,
-	leadingSpaces: string
+	lineText: string
 ) {
 	const pickerEl = document.createElement("div");
 	pickerEl.className = "icon-picker";
@@ -41,17 +41,45 @@ export function createIconPicker(
 		pickerEl.appendChild(iconEl);
 	});
 
+	function getLeadingSpaces(str: string): string {
+		const match = str.match(/^\s+/);
+		return match ? match[0] : "";
+	}
+
+	function checkIsRightTrigger(text: string, customTrigger: string): boolean {
+		return (
+			text === `-${customTrigger}` ||
+			text === `- ${customTrigger}` ||
+			text === `- [ ] ${customTrigger}`
+		);
+	}
+
+	function getPrefixLength(text: string): number {
+		const prefixRegex = /^- (?:\[[^\]]*\] )?/;
+		const match = text.match(prefixRegex);
+		return match ? match[0].length : 0;
+	}
+
 	const selectIcon = (value: string) => {
+		const leadingSpaces = getLeadingSpaces(lineText);
+		const spaceLength = leadingSpaces.length;
+		const lTrimedLineText = lineText.slice(spaceLength);
+		const triggerLength = checkIsRightTrigger(
+			lTrimedLineText,
+			customTrigger
+		)
+			? lTrimedLineText.length
+			: getPrefixLength(lTrimedLineText);
 		editor.replaceRange(
 			`${leadingSpaces}${value}`,
 			{ line: lineNumber, ch: 0 },
-			{ line: lineNumber, ch: lineLength }
+			{ line: lineNumber, ch: spaceLength + triggerLength }
 		);
 		closePicker();
 
 		// Move the cursor to the end of the inserted text
 		setTimeout(() => {
-			editor.setCursor(lineNumber, value.length + leadingSpaces.length);
+			editor.setCursor(lineNumber, editor.getLine(lineNumber).length);
 			editor.focus();
 		}, 0);
 	};
