@@ -47,22 +47,12 @@ export function createIconPicker(
 	}
 
 	function checkIsRightTrigger(text: string, customTrigger: string): boolean {
-		// return (
-		// 	text === `-${customTrigger}` ||
-		// 	text === `- ${customTrigger}` ||
-		// 	text === `- [ ] ${customTrigger}`
-		// );
 		const regex = new RegExp(
-			`^(\\d+\\. |\\d+\\. |)- ?(\\[ \\] )?${customTrigger}$`
+			`^(- ?(\\[ \\] ?)?|\\d+\\. ?)${customTrigger}$`
 		);
 		return regex.test(text);
 	}
 
-	// function getPrefixLength(text: string): number {
-	// 	const prefixRegex = /^- (?:\[[^\]]*\] )?/;
-	// 	const match = text.match(prefixRegex);
-	// 	return match ? match[0].length : 0;
-	// }
 	function getPrefixLength(text: string): number {
 		const prefixRegex = /^(?:- |\d+\. )(?:\[[^\]]*\] )?/;
 		const match = text.match(prefixRegex);

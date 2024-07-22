@@ -1,7 +1,7 @@
 {
 	"id": "checkbox-styling-helper",
 	"name": "Checkbox styling helper",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"minAppVersion": "0.15.0",
 	"description": "Helps you styling checkboxes in preview mode.",
 	"author": "JaewonE",

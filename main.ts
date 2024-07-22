@@ -55,18 +55,10 @@ export default class IconCheckboxPlugin extends Plugin {
 		await this.saveData(this.settings);
 	}
 
-	// checkIsRightTrigger(text: string): boolean {
-	// 	const customTrigger = this.settings.customTrigger ?? ":";
-	// 	return (
-	// 		text === `-${customTrigger}` ||
-	// 		text === `- ${customTrigger}` ||
-	// 		text === `- [ ] ${customTrigger}`
-	// 	);
-	// }
 	checkIsRightTrigger(text: string): boolean {
 		const customTrigger = this.settings.customTrigger ?? ":";
 		const regex = new RegExp(
-			`^(\\d+\\. |\\d+\\. |)- ?(\\[ \\] )?${customTrigger}$`
+			`^(- ?(\\[ \\] ?)?|\\d+\\. ?)${customTrigger}$`
 		);
 		return regex.test(text);
 	}
