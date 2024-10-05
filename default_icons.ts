@@ -95,6 +95,27 @@ const icons_Minimal = [
 	],
 ];
 
+const icons_niceBorder = [
+	...icons_common,
+	...[
+		{ name: "Cancelled", icon: "➖", value: "- [-]" },
+		{ name: "Forward", icon: "➤", value: "- [>] " },
+		{ name: "Date", icon: "📅", value: "- [<] " },
+		{ name: "Add", icon: "➕", value: "- [+] " },
+		{ name: "Idea", icon: "💡", value: "- [I] " },
+		{ name: "Pro", icon: "👍", value: "- [p] " },
+		{ name: "Con", icon: "👎", value: "- [c] " },
+		{ name: "Note", icon: "📝", value: "- [n] " },
+		{ name: "Bookmark", icon: "🔖", value: "- [b] " },
+		{ name: "Information", icon: "ℹ️", value: "- [i] " },
+		{ name: "Location", icon: "📍", value: "- [l] " },
+		{ name: "Amount", icon: "💰", value: "- [S] " },
+		{ name: "Star", icon: "⭐", value: "- [*] " },
+		{ name: "Up", icon: "📈", value: "- [u] " },
+		{ name: "Down", icon: "📉", value: "- [d] " },
+	],
+];
+
 export interface Icon_Item_Setting {
 	name: string;
 	icon: string;
@@ -106,10 +127,12 @@ export interface Icon_Setting {
 	Else: Icon_Item_Setting[];
 	Things: Icon_Item_Setting[];
 	Minimal: Icon_Item_Setting[];
+	NiceBorder: Icon_Item_Setting[];
 }
 
 export const icons_setting: Icon_Setting = {
 	Else: icons_ect,
 	Things: icons_Things,
 	Minimal: icons_Minimal,
+	NiceBorder: icons_niceBorder,
 } as const;
