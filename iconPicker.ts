@@ -42,13 +42,14 @@ export function createIconPicker(
 	});
 
 	function getLeadingSpaces(str: string): string {
-		const match = str.match(/^\s+/);
+		const match = str.match(/^[>\s]+/);
+
 		return match ? match[0] : "";
 	}
 
 	function checkIsRightTrigger(text: string, customTrigger: string): boolean {
 		const regex = new RegExp(
-			`^(- ?(\\[ \\] ?)?|\\d+\\. ?)${customTrigger}$`
+			`^(>? ?(- ?(\\[ \\] ?)?|\\d+\\. ?))${customTrigger}$`
 		);
 		return regex.test(text);
 	}

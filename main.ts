@@ -58,7 +58,7 @@ export default class IconCheckboxPlugin extends Plugin {
 	checkIsRightTrigger(text: string): boolean {
 		const customTrigger = this.settings.customTrigger ?? ":";
 		const regex = new RegExp(
-			`^(- ?(\\[ \\] ?)?|\\d+\\. ?)${customTrigger}$`
+			`^(>? ?(- ?(\\[ \\] ?)?|\\d+\\. ?))${customTrigger}$`
 		);
 		return regex.test(text);
 	}
