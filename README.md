@@ -4,9 +4,9 @@ The is a Obsidian plugin that helps you styling checkboxes in preview mode.
 
 If the theme you are using...
 
-#### Things or Minimal theme
+#### Things or Minimal Border theme
 
-Be sure to check to use the [Things theme](https://github.com/colineckert/obsidian-things) or [Minimal theme](https://github.com/kepano/obsidian-minimal) in the settings.
+Be sure to check to use the [Things theme](https://github.com/colineckert/obsidian-things) or [Minimal theme](https://github.com/kepano/obsidian-minimal) or [Border theme](https://github.com/Akifyss/obsidian-border)in the settings.
 
 #### Else (including default theme)
 
